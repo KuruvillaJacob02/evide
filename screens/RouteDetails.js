@@ -44,18 +44,18 @@ const RouteDetailsScreen = ({ navigation }) => {
     },
     {
       label:'PipeLine Junction',
-      status:'your order has been placed',
-      dateTime: 'Sat, 4rd Nov 11:50pm'
+      status:'Walk 2 min (80m), then wait for\n upto 6 mins',
+      dateTime: '8:55pm'
     },
     {
       label:'PipeLine Junction',
-      status:'your order has been placed',
-      dateTime: 'Sat, 4rd Nov 11:50pm'
+      status:'North Paravur Bus stand\nScheduled 8:28pm',
+      dateTime: 'Ride 7 stops (10min)'
     },
     {
       label:'KMK Junction',
       status:'your order has been placed',
-      dateTime: 'Sat, 4rd Nov 11:50pm'
+      dateTime: 'Ride 7 stops (10min)'
     },
 ];
 
@@ -109,6 +109,15 @@ const styles = StyleSheet.create({
   indicatorContainer:{
     paddingLeft: '8%',
   
+  },
+  labelContainer:{
+    flexDirection:'column',
+    alignItems:'flex-start',
+    marginTop:30,
+
+  },
+  labelText:{
+    textAlign:'left',
   },
 });
 

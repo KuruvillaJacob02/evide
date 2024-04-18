@@ -15,3 +15,14 @@ export default function App() {
       </NavigationContainer>
   )
 }
+
+<View style={{height:130, width:130,marginLeft:20, borderWidth:0.5,borderColor:'#dddddd',borderRadius:10}}>
+                    <View style ={{flex:2}}>
+                        <Image source ={require('../img/home.jpg')} style={{flex:1,resizeMode:'cover',height:null,width:null}}/>
+                    </View>
+                    <View style ={{flex:1,paddingLeft:'5%',paddingTop:'5%'}}>
+                        <Text>Some Mall</Text>
+                    </View>
+                </View>
+
+<Category imageUri={require('../img/jome.jpg')} name="Some Mall"/>

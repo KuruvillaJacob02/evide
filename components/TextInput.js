@@ -1,29 +1,32 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, TextInput, StyleSheet, TouchableOpacity,Text } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import ProfileIcon from './ProfileIcon.js';
 const Drawer = createDrawerNavigator();
 
-const TextInputContainer = ({navigation}) => {
+const TextInputContainer = ({ navigation }) => {
+  
   return (
     <View style={styles.container}>
       <View style={styles.menuButtonContainer}>
-          {/* Custom button with three lines */}
-          <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={styles.menuButton}>
-            <Text style={styles.buttonText}>≡</Text>
-          </TouchableOpacity>
+        {/* Custom button with three lines */}
+        <ProfileIcon
+        onPress={() => navigation.toggleDrawer()} // Example onPress function
+        imageSource={require('../img/profile.png')} // Example image source
+        />
       </View>
-      
+
       <TextInput
         style={[styles.textInput, styles.firstTextInput]}
-        placeholder="From"
-        placeholderTextColor="#FFFFFF" // Set placeholder text color to white
+        placeholder="Start Location"
+        placeholderTextColor="black" // Set placeholder text color to white
       />
       <TextInput
         style={styles.textInput}
-        placeholder="To"
-        placeholderTextColor="#FFFFFF" // Set placeholder text color to white
+        placeholder="Where To?"
+        placeholderTextColor="black" // Set placeholder text color to white
       />
     </View>
   );
@@ -31,34 +34,40 @@ const TextInputContainer = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFC75B',
     width: '100%',
-    height: '28%',
     borderRadius: 25,
     padding: '10%',
     position: 'relative',
   },
   textInput: {
     color: '#FFFFFF',
-    width: '100%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 25,
+    width: '90%',
     padding: 10,
     marginBottom: 10,
-    borderBottomWidth: 1,
-    borderColor: '#FFFFFF',
-  },
+    borderWidth: 1,
+    borderColor: '#2675EC', // Set border color to #2675EC
+    fontWeight: '600',
+    borderWidth:1.25,
+    marginLeft:'10%',
+    paddingLeft:'10%',
+    },
   firstTextInput: {
-    marginTop: '25%',
+    marginTop:'10%',
   },
   menuButtonContainer: {
     position: 'absolute',
-    top: '30%',
-    left: '5%',
+    top: '50%',
+    left: '2%',
     padding: 10,
   },
   menuButton: {
-    width: '100%',
+    width: '200%',
     height: '100%',
     alignItems: 'center',
+    borderRadius:25,
+    backgroundColor:'black',
   },
   buttonText: {
     fontSize: 24,

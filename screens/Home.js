@@ -8,7 +8,9 @@ import { TextInput, Image, Button } from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import * as Location from 'expo-location';
 import TextInputContainer from '../components/TextInput.js';
-
+import BottomSheet from '../components/BottomSheet.js';
+import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
+import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 const windowHeight = Dimensions.get('window').height;
 const Home =({navigation}) =>{
@@ -37,31 +39,39 @@ const Home =({navigation}) =>{
     userLocaton();
   },[])
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+    <BottomSheetModalProvider>
     <View style={styles.container}>
       <TextInputContainer navigation={navigation}/>
       <MapView style={styles.map} region={mapRegion} provider= {PROVIDER_GOOGLE}>
         <Marker coordinate = {mapRegion} title = 'Marker' />
       </MapView>
-      <TouchableOpacity style={styles.goButtonContainer} onPress={userLocaton}>
+      {/*<TouchableOpacity style={styles.goButtonContainer} onPress={userLocaton}>
         <View style={styles.goButton}>
           <Text style={styles.goButtonText}>Go</Text>
         </View>
-      </TouchableOpacity>
+</TouchableOpacity> */}
+      <BottomSheet navigation={navigation}/>
     </View>
+    </BottomSheetModalProvider>
+    </GestureHandlerRootView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   map: {
     flex: 1,
+    ...StyleSheet.absoluteFillObject,
     width: '100%',
     marginBottom: 0, // Remove or set to 0
+    zIndex: -1,
+
   },
   goButtonContainer: {
     position: 'absolute',
