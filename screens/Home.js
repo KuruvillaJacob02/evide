@@ -11,6 +11,7 @@ import TextInputContainer from '../components/TextInput.js';
 import BottomSheet from '../components/BottomSheet.js';
 import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import BottomSheet2 from '../components/BottomSheet2.js';
 
 const windowHeight = Dimensions.get('window').height;
 const Home =({navigation}) =>{

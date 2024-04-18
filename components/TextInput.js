@@ -7,7 +7,7 @@ import ProfileIcon from './ProfileIcon.js';
 const Drawer = createDrawerNavigator();
 
 const TextInputContainer = ({ navigation }) => {
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.menuButtonContainer}>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   textInput: {
-    color: '#FFFFFF',
+    color: 'black',
     backgroundColor: '#FFFFFF',
     borderRadius: 25,
     width: '90%',

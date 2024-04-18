@@ -7,7 +7,7 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const BottomSheet = ({navigation}) => {
   const bottomSheetModalRef = useRef(null);
-  const snapPoints = ['50%', '25%', '75%'];
+  const snapPoints = ['25%', '50%', '78%'];
   bottomSheetModalRef.current?.present();
   function handlePresentModal() {
     bottomSheetModalRef.current?.present();
@@ -29,7 +29,7 @@ const BottomSheet = ({navigation}) => {
           <View style = {styles.BottomSheetContainer}>
           <BottomSheetModal
             ref={bottomSheetModalRef}
-            index={0}
+            index={1}
             snapPoints={snapPoints}
             enableContentPanning={handleContentPanning} // Apply the custom content panning handler
           >

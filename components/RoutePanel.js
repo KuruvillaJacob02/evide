@@ -1,28 +1,25 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import TextInputContainer from './TextInput.js';
-import {Image, View, TextInput, StyleSheet, TouchableOpacity,Text } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-
-const RoutePanel = () => {
+const RoutePanel = ({ startButtonColor, startButtonTextColor }) => {
   return (
-    <View style={styles.container}> 
-      <View style ={styles.leftPanel}>
-        <View style = {styles.routeIcons}>
-          <Image source={require('../img/walk.png')}  style={styles.icon} />
-          <Image source={require('../img/bus.png')}  style={styles.icon}/>
-          <Image source={require('../img/bus.png')}  style={styles.icon}/>
+    <View style={styles.container}>
+      <View style={{ flex: 0.65 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: '6%', marginTop: '5%', marginBottom: '5%' }}>
+          <Image source={require('../img/walk.png')} style={styles.icon} />
+          <Image source={require('../img/bus.png')} style={styles.icon} />
+          <Image source={require('../img/bus.png')} style={styles.icon} />
         </View>
-        <View style={styles.routeInfo}>
+        <View>
           <Text style={styles.routeText}>8:28pm - 10:29pm | Cost: 45Rs</Text>
           <Text style={styles.routeText}>Chittetukara Rajagiri  -  Kakkanad civil station </Text>
         </View>
       </View>
-      <View style ={styles.rightPanel}>
+      <View style={{ flex: 0.35, justifyContent: 'center', alignItems: 'center'}}>
         <Text style={styles.routeTime}> 2h 1 min</Text>
-        <View style={styles.startButtoncontainer}> 
-          <TouchableOpacity onPress={() => {}} style={styles.startButton}>
-            <Text style={styles.startButtonText}>Start</Text>
+        <View style={styles.startButtonContainer}>
+          <TouchableOpacity onPress={() => {}} style={[styles.startButton, { backgroundColor: startButtonColor }]}>
+            <Text style={[styles.startButtonText, { color: startButtonTextColor }]}>Start</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -32,54 +29,42 @@ const RoutePanel = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#FFC75B',
+    height: 110,
+    width: '90%',
+    marginLeft: '5%',
+    marginTop: 15,
+    borderWidth: 1.2,
+    borderColor: 'black',
     borderRadius: 25,
-    height:'9%',
-    width: '94%',
-    marginTop:10,
-    marginBottom:10,
-  },
-  startButtoncontainer:{
-    position:'relative',
-  },
-  startButton:{
     backgroundColor: 'white',
-    borderRadius: 20,
-    paddingHorizontal: 25,
-    paddingVertical: 10,
-    marginTop:'8%',
+    flexDirection: 'row',
   },
-  startButtonText:{},
-  leftPanel:{
-    flexDirection: 'column',
+  startButtonContainer: {},
+  startButton: {
+    paddingVertical: '5%',
+    paddingHorizontal: '17%',
+    borderRadius: 30,
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  routeIcons:{
-    flexDirection:'row',
-    paddingLeft:'0%',
-    paddingTop:'12%',
-    marginBottom:'0%',
+  startButtonText: {},
+  routeIcons: {
+    flexDirection: 'row',
+    paddingLeft: '0%',
+    paddingTop: '12%',
+    marginBottom: '0%',
   },
-  rightPanel:{
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '7%',
-    marginRight: '3%',
-  },
-  routeTime:{
-    fontSize:22,
+  routeTime: {
+    fontSize: 22,
   },
   routeText: {
-    fontSize: 10, // Adjust the font size as needed
-    marginTop:'5%', // Adjust the top margin to move the text lower
-    marginLeft:'5%'
+    fontSize: 10,
+    marginTop: '2%',
+    marginLeft: '5%',
   },
   icon: {
-    height:22,
-    width:22,
-    paddingRight:75,
+    height: 22,
+    width: 22,
     resizeMode: 'contain',
   },
 });
