@@ -32,7 +32,7 @@ const BottomSheet2 = ({navigation}) => {
           <View style = {styles.BottomSheetContainer}>
           <BottomSheetModal
             ref={bottomSheetModalRef}
-            index={1}
+            index={2}
             snapPoints={snapPoints}
             enableContentPanning={handleContentPanning} // Apply the custom content panning handler
           >

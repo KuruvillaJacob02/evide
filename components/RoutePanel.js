@@ -15,7 +15,7 @@ const RoutePanel = ({ startButtonColor, startButtonTextColor }) => {
           <Text style={styles.routeText}>Chittetukara Rajagiri  -  Kakkanad civil station </Text>
         </View>
       </View>
-      <View style={{ flex: 0.35, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ flex: 0.35, justifyContent: 'center', alignItems: 'center',borderLeftColor:'#dddddd',borderLeftWidth:1.2}}>
         <Text style={styles.routeTime}> 2h 1 min</Text>
         <View style={styles.startButtonContainer}>
           <TouchableOpacity onPress={() => {}} style={[styles.startButton, { backgroundColor: startButtonColor }]}>
