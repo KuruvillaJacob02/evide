@@ -4,7 +4,7 @@ import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import Category from './Explore/Category.js'
 import RoutePanel from './RoutePanel.js';
-
+import { useTranslation } from 'react-i18next';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
@@ -23,7 +23,7 @@ const BottomSheet2 = ({navigation}) => {
     }
     return true;
   }, []);
-
+  const { t } = useTranslation();
   return (
         <View style={styles.container}>
           <View style={styles.modalButtonContainer}>
@@ -45,7 +45,7 @@ const BottomSheet2 = ({navigation}) => {
                 contentContainerStyle={{justifyContent:'flex-start'}}
               >
                 <View style={styles.routeTextContainer}>
-                    <Text style={styles.routeText}>Reccomnded Route</Text>
+                    <Text style={styles.routeText}>{t('recommendedRoute')}</Text>
                 </View>
                 <RoutePanel startButtonColor="#FFC75B" startButtonTextColor="black" />
                 <View style={styles.routeTextContainer}>

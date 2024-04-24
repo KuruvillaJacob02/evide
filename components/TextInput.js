@@ -4,10 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import ProfileIcon from './ProfileIcon.js';
+import { useTranslation } from 'react-i18next';
 const Drawer = createDrawerNavigator();
 
 const TextInputContainer = ({ navigation }) => {
-
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.menuButtonContainer}>
@@ -20,12 +21,12 @@ const TextInputContainer = ({ navigation }) => {
 
       <TextInput
         style={[styles.textInput, styles.firstTextInput]}
-        placeholder="Start Location"
+        placeholder={t('start')}
         placeholderTextColor="black" // Set placeholder text color to white
       />
       <TextInput
         style={styles.textInput}
-        placeholder="Where To?"
+        placeholder={t('where')}
         placeholderTextColor="black" // Set placeholder text color to white
       />
     </View>

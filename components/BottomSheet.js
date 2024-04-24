@@ -2,6 +2,8 @@ import React, { useCallback, useMemo, useRef } from 'react';
 import { View, Text, StyleSheet, Button, Dimensions, Image} from 'react-native';
 import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { useTranslation } from 'react-i18next';
+
 import Category from './Explore/Category.js'
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -20,7 +22,7 @@ const BottomSheet = ({navigation}) => {
     }
     return true;
   }, []);
-
+  const { t } = useTranslation();
   return (
         <View style={styles.container}>
           <View style={styles.modalButtonContainer}>
@@ -35,25 +37,25 @@ const BottomSheet = ({navigation}) => {
           >
             <View style={{ height: "90%", marginTop: 20 }}>
                 <View style={styles.welcomeTextContainer}>
-                    <Text style={styles.welcomeText}>Hi Gayathri</Text>
-                    <Text style={styles.welcomeText}>Where Would you like to go?</Text>
+                    <Text style={styles.welcomeText}>{t('greet')}</Text>
+                    <Text style={styles.welcomeText}>{t('question')}</Text>
                 </View>
                 <View style={styles.filterTextContainer}>
-                    <Text style={styles.filterText}>Popular</Text>
+                    <Text style={styles.filterText}>{t('popular')}</Text>
                 </View>
               <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 scrollEventThrottle={16}
               >
-                <Category name="Some Mall" imageUri={require('../img/home.jpg')} />
+                <Category name={t('someMall')} imageUri={require('../img/home.jpg')} />
                 <Category name="Another Mall" imageUri={require('../img/home.jpg')} />
                 <Category name="Lulu Mall" imageUri={require('../img/home.jpg')} />
                 <Category name="Lulu Mall" imageUri={require('../img/home.jpg')} />
               </ScrollView>
 
               <View style={styles.filterTextContainer}>
-                    <Text style={styles.filterText}>Nearby</Text>
+                    <Text style={styles.filterText}>{t('nearby')}</Text>
                 </View>
               <ScrollView
                 horizontal={true}
