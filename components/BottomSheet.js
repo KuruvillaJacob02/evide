@@ -54,7 +54,7 @@ const BottomSheet = ({navigation, placeList}) => {
                     "?maxwidth=400" +
                     "&photo_reference=" +
                     place.photos[0].photo_reference +
-                    "&key=AIzaSyDxcgmpNTtROwth6FMxilVQCUZ-D8U8384"
+                    "&key="
                   } : null} />
                 ))}
               </ScrollView>
