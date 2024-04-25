@@ -11,7 +11,7 @@ import TextInputContainer from '../components/TextInput.js';
 import BottomSheet from '../components/BottomSheet.js';
 import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import BottomSheet2 from '../components/BottomSheet2.js';
+import GlobalApi from '../services/GlobalApi.js';
 
 const windowHeight = Dimensions.get('window').height;
 const Home =({navigation}) =>{
@@ -36,8 +36,20 @@ const Home =({navigation}) =>{
     });
     console.log(location.coords.latitude, location.coords.longitude);
   }
+  const [placeList, setPlaceList] = useState([]);
+
+  const getNearbySearchPlace= async ()=>{
+    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
+    GlobalApi.nearByPlace(location.coords.latitude,location.coords.longitude,"restaurant").then(resp=>{
+      setPlaceList(resp.data.results);
+      placeList.forEach(place => {
+        console.log(place.photos[0].photo_reference);
+      });
+    })
+  }
   useEffect(() => {
     userLocaton();
+    getNearbySearchPlace();
   },[])
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -52,7 +64,7 @@ const Home =({navigation}) =>{
           <Text style={styles.goButtonText}>Go</Text>
         </View>
 </TouchableOpacity> */}
-      <BottomSheet navigation={navigation}/>
+      <BottomSheet navigation={navigation} placeList={placeList}/>
     </View>
     </BottomSheetModalProvider>
     </GestureHandlerRootView>

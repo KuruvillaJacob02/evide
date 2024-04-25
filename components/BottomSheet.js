@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import Category from './Explore/Category.js'
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
-const BottomSheet = ({navigation}) => {
+const BottomSheet = ({navigation, placeList}) => {
   const bottomSheetModalRef = useRef(null);
   const snapPoints = ['25%', '50%', '78%'];
   bottomSheetModalRef.current?.present();
@@ -48,10 +48,15 @@ const BottomSheet = ({navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 scrollEventThrottle={16}
               >
-                <Category name={t('someMall')} imageUri={require('../img/home.jpg')} />
-                <Category name="Another Mall" imageUri={require('../img/home.jpg')} />
-                <Category name="Lulu Mall" imageUri={require('../img/home.jpg')} />
-                <Category name="Lulu Mall" imageUri={require('../img/home.jpg')} />
+               {placeList.map(place => (
+                  <Category key={place.id} name={place.name} imageUri={place.photos && place.photos.length > 0 ? { uri:
+                    "https://maps.googleapis.com/maps/api/place/photo" +
+                    "?maxwidth=400" +
+                    "&photo_reference=" +
+                    place.photos[0].photo_reference +
+                    "&key=AIzaSyDxcgmpNTtROwth6FMxilVQCUZ-D8U8384"
+                  } : null} />
+                ))}
               </ScrollView>
 
               <View style={styles.filterTextContainer}>
