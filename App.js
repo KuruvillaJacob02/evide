@@ -7,6 +7,7 @@ import Home from './screens/Home.js';
 import ViewRoutes from './screens/ViewRoutes.js';
 import RoutePanel from './components/RoutePanel.js';
 import RouteDetails from './screens/RouteDetails.js';
+import LiveTrack from './screens/LiveTrack.js';
 import Test1 from './screens/TestScreen1.js';
 import Test2 from './screens/TestScreen2.js';
 import LanguageScreen from './components/LanguageScreen';
@@ -28,7 +29,7 @@ const DrawerNavigator = () => {
       <Drawer.Screen name={t('home')} component={Home} />
       <Drawer.Screen name={t('viewRoutes')} component={ViewRoutes} />
       <Drawer.Screen name="Route Details" component={RouteDetails} />
-      <Drawer.Screen name="Test 1" component={Test1} />
+      <Drawer.Screen name="Live Tracking" component={LiveTrack} />
       <Drawer.Screen name="Test 2" component={Test2} />
       <Drawer.Screen name="Change Language" component={LanguageScreen} />
     </Drawer.Navigator>
