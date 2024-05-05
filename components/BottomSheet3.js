@@ -4,11 +4,39 @@ import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import Category from './Explore/Category.js'
 import RoutePanel from './RoutePanel.js';
+import StepIndicator from 'react-native-step-indicator';
 import { useTranslation } from 'react-i18next';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
-const BottomSheet2 = ({navigation}) => {
+const labels = ["Your Location","Delivery Address","Order Summary","Payment Method","Track"];
+const customStyles = {
+  stepIndicatorSize: 25,
+  currentStepIndicatorSize:30,
+  separatorStrokeWidth: 10,
+  currentStepStrokeWidth: 15,
+  stepStrokeCurrentColor: '#F8BC62', //First node
+  stepStrokeWidth: 3,
+  stepStrokeFinishedColor: '#fe7013',  //Finished node
+  stepStrokeUnFinishedColor: '#F8BC62',
+  separatorFinishedColor: '#fe7013',
+  separatorUnFinishedColor: '#F8BC62',
+  stepIndicatorFinishedColor: '#fe7013',
+  stepIndicatorUnFinishedColor: '#ffffff',
+  stepIndicatorCurrentColor: '#ffffff',
+  stepIndicatorLabelFontSize: 15,
+  currentStepIndicatorLabelFontSize: 15,
+  stepIndicatorLabelCurrentColor: '#fe7013',
+  stepIndicatorLabelFinishedColor: '#ffffff',
+  stepIndicatorLabelUnFinishedColor: '#aaaaaa',
+  labelColor: '#999999',
+  labelSize: 15,
+  currentStepLabelColor: '#fe7013',
+  labelAlign:'left',
+  labelColor:'black',
+}
+
+const BottomSheet3 = ({navigation}) => {
   const bottomSheetModalRef = useRef(null);
   const snapPoints = ['25%', '50%', '78%'];
   bottomSheetModalRef.current?.present();
@@ -24,6 +52,40 @@ const BottomSheet2 = ({navigation}) => {
     return true;
   }, []);
   
+  const data=[
+    {
+      label: 'Your Location',
+      status: 'Walk 17 min (1.1km)',
+      dateTime: '8:28pm'
+    },
+    {
+      label: 'Rajagiri College',
+      status: 'Some Bus Stand Ride 7 stops ',
+      dateTime: 'Scheduled 8:53pm'
+    },
+    {
+      label: 'PipeLine Junction',
+      status: 'Walk 2 min (80m), then wait upto 6 min',
+      dateTime: '8:55pm'
+    },
+    {
+      label: 'Kakkanad Metro',
+      status: 'Ride to Vytilla, 5 stops',
+      dateTime: '9:10'
+    },
+    {
+      label: 'Toc H school',
+      status: '',
+      dateTime: 'Arrive by 9:20pm'
+    },
+    {
+      label: 'Your Location',
+      status: '',
+      dateTime: ''
+    }
+  ]
+
+  
   return (
         <View style={styles.container}>
           <View style={styles.modalButtonContainer}>
@@ -36,7 +98,7 @@ const BottomSheet2 = ({navigation}) => {
             snapPoints={snapPoints}
             enableContentPanning={handleContentPanning} // Apply the custom content panning handler
           >
-            <View style={{ height:'100%', marginTop: '1%' ,position:'relative'}}>
+            <View style={{ height:'100%', marginTop: '1%' ,position:'relative',}}>
           
               <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -44,23 +106,31 @@ const BottomSheet2 = ({navigation}) => {
                 style = {{}}
                 contentContainerStyle={{justifyContent:'flex-start'}}
               >
-                <View style={styles.routeTextContainer}>
-                    <Text style={styles.routeText}>{t('recommendedRoute')}</Text>
+                <View style = {styles.indicatorContainer}>
+                <StepIndicator
+                  customStyles={customStyles}
+                  stepCount={5}
+                  currentPosition={0}
+                  labels={labels}
+                  direction="vertical"
+                  renderLabel={({position,stepStatus,label,curpos}) => {
+                    return(
+                      <View style = {styles.labelContainer}>
+                        <Text style = {styles.labelText}>{data[position].label}</Text>
+                        <Text style = {styles.content}>{data[position].status}</Text>
+                        <Text style = {styles.content}>{data[position].dateTime}</Text>
+                      </View>
+                    )
+                  }}
+                />
                 </View>
-                <RoutePanel startButtonColor="#FFC75B" startButtonTextColor="black" />
-                <View style={styles.routeTextContainer}>
-                    <Text style={styles.routeText}>More Routes</Text>
-                </View>
-                <RoutePanel startButtonColor="#0074CB" startButtonTextColor="white" />
-                <RoutePanel startButtonColor="#0074CB" startButtonTextColor="white" />
-                <RoutePanel startButtonColor="#0074CB" startButtonTextColor="white" />
-                <RoutePanel startButtonColor="#0074CB" startButtonTextColor="white" />
-                <RoutePanel startButtonColor="#0074CB" startButtonTextColor="white" />
-                <RoutePanel startButtonColor="#0074CB" startButtonTextColor="white" />
+                
+                
+                
               </ScrollView>
               <TouchableOpacity style={styles.selectContainer} >
                 <View style={styles.selectButton}>
-                   <Text style={styles.selectText}>Select Route</Text>
+                   <Text style={styles.selectText}>Start Journey</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -72,7 +142,7 @@ const BottomSheet2 = ({navigation}) => {
   );
 }
 
-export default BottomSheet2;
+export default BottomSheet3;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -132,5 +202,30 @@ const styles = StyleSheet.create({
   selectText:{
     fontWeight:'600',
     color:'white',
-  }
+  },
+  indicatorContainer:{
+    height:windowHeight,
+    margin:0,
+    paddingLeft:27,
+    paddingTop:0,
+  },
+  labelContainer:{
+    paddingLeft:10,
+    
+    height:windowHeight/6,
+    marginTop:110,
+    width:'100%',
+  },
+  labelText:{
+    fontSize:15,
+    fontWeight:'600',
+    marginBottom:10,
+  },
+  content:{
+    fontSize:14,
+    paddingBottom:5,
+  
+  },
 });
+
+

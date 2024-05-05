@@ -14,7 +14,7 @@ const BottomSheet = ({navigation, placeList}) => {
   function handlePresentModal() {
     bottomSheetModalRef.current?.present();
   }
-
+  const { t } = useTranslation();
   const handleContentPanning = useCallback((event, gestureState, fromIndex, toIndex) => {
     // Prevent the modal from going below 25%
     if (toIndex < 0) {
@@ -22,7 +22,7 @@ const BottomSheet = ({navigation, placeList}) => {
     }
     return true;
   }, []);
-  const { t } = useTranslation();
+  
   return (
         <View style={styles.container}>
           <View style={styles.modalButtonContainer}>

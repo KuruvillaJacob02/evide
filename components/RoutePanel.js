@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import RouteDetails from '../screens/RouteDetails.js';
 
-const RoutePanel = ({ startButtonColor, startButtonTextColor }) => {
+
+const RoutePanel = ({ startButtonColor, startButtonTextColor}) => {
   return (
+
     <View style={styles.container}>
       <View style={{ flex: 0.65 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: '6%', marginTop: '5%', marginBottom: '5%' }}>
